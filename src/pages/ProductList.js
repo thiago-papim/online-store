@@ -26,7 +26,6 @@ export default class ProductList extends React.Component {
     const { query, products } = this.state;
     return (
       <div>
-        <input />
         <p data-testid="home-initial-message">
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
