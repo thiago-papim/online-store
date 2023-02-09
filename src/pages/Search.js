@@ -25,13 +25,6 @@ class Search extends React.Component {
     });
   };
 
-  checkInputSerach = () => {
-    const { search } = this.state;
-    if (search === '') {
-      return true;
-    }
-  };
-
   // função condicional para saber o que vai ser renderizado
   testCondition = () => {
     const { returnOfSearch, trigger } = this.state;
@@ -77,12 +70,6 @@ class Search extends React.Component {
             </p>
 
           </div>)) : <h1>Nenhum produto foi encontrado</h1>}
-        {this.checkInputSerach() && (
-          <div data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </div>
-        )}
-
         <div>
           {
             categories.map((element) => (
