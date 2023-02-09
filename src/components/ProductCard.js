@@ -5,7 +5,7 @@ export default class ProductCard extends React.Component {
   render() {
     const { productName, productPrice, productImage } = this.props;
     return (
-      <div data-testid="product">
+      <div>
         <p>{productName}</p>
         <img src={ productImage } alt={ productName } />
         <p>{productPrice}</p>
