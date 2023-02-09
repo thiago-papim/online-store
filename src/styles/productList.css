@@ -1,0 +1,12 @@
+.main-container {
+  display: flex;
+}
+
+.sidebar {
+  font-size: 18px;
+  width: 250px;
+}
+
+.sidebar li {
+  list-style: none;
+}
