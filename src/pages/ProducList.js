@@ -4,7 +4,7 @@ import ProductCard from '../components/ProductCard';
 
 export default class ProductList extends React.Component {
   state = {
-    productName: [],
+    products: [],
     query: '',
   };
 
@@ -18,12 +18,12 @@ export default class ProductList extends React.Component {
       `https://api.mercadolibre.com/sites/MLB/search?q=${query}`,
     );
     const data = await response.json();
-    this.setState({ productName: data.results });
+    this.setState({ products: data.results });
   };
 
   render() {
     const { props: { history } } = this.props;
-    const { query, productName } = this.state;
+    const { query, products } = this.state;
     return (
       <div>
         <input />
@@ -45,12 +45,12 @@ export default class ProductList extends React.Component {
         <button onClick={ this.handleClick } data-testid="query-button">
           Search
         </button>
-        {productName.length > 0 ? (
+        {products.length > 0 ? (
           <ul>
-            {productName.map((product) => (
+            {products.map((product) => (
               <li key={ product.id } data-testid="product">
                 <ProductCard
-                  productName={ product.title }
+                  products={ product.title }
                   productImage={ product.thumbnail }
                   productPrice={ product.price }
                 />
