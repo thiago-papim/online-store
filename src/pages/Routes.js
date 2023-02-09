@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import ProductList from './ProducList';
+import ProductList from './ProductList';
 import ShoppingCart from './ShoppingCart';
 import NotFound from './NotFound';
 
