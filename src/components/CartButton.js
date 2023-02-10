@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 
 export default class CartButton extends React.Component {
   render() {
-    const { productList, history } = this.props;
+    const { productList } = this.props;
     return (
       <button
         data-testid="shopping-cart-button"
-        onClick={ () => history.push('/shopping-cart') }
       >
         Carrinho de Compras
         {' '}

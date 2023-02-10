@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import Sidebar from '../components/Sidebar';
 import '../styles/productList.css';
@@ -59,7 +60,6 @@ export default class ProductList extends React.Component {
   };
 
   render() {
-    const { props: { history } } = this.props;
     const { query, products, productList } = this.state;
     return (
       <div className="main-container">
@@ -70,7 +70,14 @@ export default class ProductList extends React.Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <CartButton productList={ productList } history={ history } />
+          <Link
+            to={ {
+              pathname: '/shopping-cart',
+              state: productList,
+            } }
+          >
+            <CartButton productList={ productList } />
+          </Link>
           <input
             type="text"
             value={ query }
