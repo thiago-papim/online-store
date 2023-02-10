@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 
 export default class CartButton extends React.Component {
   render() {
-    const { history } = this.props;
-    const counter = ['', '', '']; /* localStorage.getItem('cartItems'); */
+    const { productList, history } = this.props;
     return (
       <button
         data-testid="shopping-cart-button"
@@ -12,7 +11,7 @@ export default class CartButton extends React.Component {
       >
         Carrinho de Compras
         {' '}
-        <span>{` (${counter.length})`}</span>
+        <span data-testid="shopping-cart-size">{` (${productList.length})`}</span>
       </button>
     );
   }
@@ -22,4 +21,5 @@ CartButton.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  productList: PropTypes.arrayOf().isRequired,
 };

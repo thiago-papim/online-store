@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ProductCard from '../components/ProductCard';
 import Sidebar from '../components/Sidebar';
 import '../styles/productList.css';
-import CartButton from './CartButton';
+import CartButton from '../components/CartButton';
 
 export default class ProductList extends React.Component {
   state = {
@@ -60,7 +60,7 @@ export default class ProductList extends React.Component {
 
   render() {
     const { props: { history } } = this.props;
-    const { query, products } = this.state;
+    const { query, products, productList } = this.state;
     return (
       <div className="main-container">
         <div className="sidebar">
@@ -70,7 +70,7 @@ export default class ProductList extends React.Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <CartButton history={ history } />
+          <CartButton productList={ productList } history={ history } />
           <input
             type="text"
             value={ query }
