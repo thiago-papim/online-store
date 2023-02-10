@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-// import ProductList from './pages/ProducList';
 import Routes from './pages/Routes';
 
 function App() {
