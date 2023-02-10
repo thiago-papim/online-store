@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import Sidebar from '../components/Sidebar';
 import '../styles/productList.css';
@@ -19,13 +20,13 @@ export default class ProductList extends React.Component {
 
   componentDidUpdate() {
     const { productList } = this.state;
+    localStorage.setItem('cartItems', JSON.stringify(productList));
     console.log(productList);
   }
 
   addCart = (product) => {
     const { productList } = this.state;
     this.setState({ productList: [...productList, product] }, () => {
-      localStorage.setItem('cartItems', JSON.stringify(productList));
     });
   };
 
@@ -57,9 +58,20 @@ export default class ProductList extends React.Component {
     }
   };
 
+  removeFromCart = (itemId) => {
+    console.log(itemId);
+    const { productList } = this.state;
+    const updatedItems = productList.filter((item) => {
+      console.log(item.id);
+      return item.id !== itemId;
+    });
+    console.log(updatedItems);
+    this.setState({ productList: updatedItems });
+    localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+  };
+
   render() {
-    const { props: { history } } = this.props;
-    const { query, products } = this.state;
+    const { query, products, productList } = this.state;
     return (
       <div className="main-container">
         <div className="sidebar">
@@ -69,12 +81,13 @@ export default class ProductList extends React.Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <input
-            type="button"
-            value="Carrinho de Compras"
-            data-testid="shopping-cart-button"
-            onClick={ () => history.push('/shopping-cart') }
-          />
+          <Link to={ { pathname: '/shopping-cart', products: productList, removeFromCart: this.removeFromCart } }>
+            <input
+              type="button"
+              value="Carrinho de Compras"
+              data-testid="shopping-cart-button"
+            />
+          </Link>
           <input
             type="text"
             value={ query }
