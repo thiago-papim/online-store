@@ -8,6 +8,25 @@ export default class ProductList extends React.Component {
   state = {
     products: [],
     query: '',
+    productList: [],
+  };
+
+  componentDidMount() {
+    const list = JSON.parse(localStorage.getItem('cartItems'));
+    console.log(list);
+    if (list) { this.setState({ productList: list }); }
+  }
+
+  componentDidUpdate() {
+    const { productList } = this.state;
+    console.log(productList);
+  }
+
+  addCart = (product) => {
+    const { productList } = this.state;
+    this.setState({ productList: [...productList, product] }, () => {
+      localStorage.setItem('cartItems', JSON.stringify(productList));
+    });
   };
 
   handleChange = (event) => {
@@ -73,6 +92,8 @@ export default class ProductList extends React.Component {
                     productName={ product.title }
                     productImage={ product.thumbnail }
                     productPrice={ product.price }
+                    product={ product }
+                    addCart={ this.addCart }
                   />
                 </li>
               ))}
