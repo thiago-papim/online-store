@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ProductCard from '../components/ProductCard';
 import Sidebar from '../components/Sidebar';
 import '../styles/productList.css';
+import CartButton from './CartButton';
 
 export default class ProductList extends React.Component {
   state = {
@@ -50,12 +51,7 @@ export default class ProductList extends React.Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <input
-            type="button"
-            value="Carrinho de Compras"
-            data-testid="shopping-cart-button"
-            onClick={ () => history.push('/shopping-cart') }
-          />
+          <CartButton history={ history } />
           <input
             type="text"
             value={ query }
