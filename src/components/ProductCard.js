@@ -3,19 +3,22 @@ import PropTypes from 'prop-types';
 
 export default class ProductCard extends React.Component {
   render() {
-    const { productName, productPrice, productImage } = this.props;
+    const { product } = this.props;
+    const { title, thumbnail, price, shipping } = product;
     return (
       <div>
-        <p>{productName}</p>
-        <img src={ productImage } alt={ productName } />
-        <p>{productPrice}</p>
+        <p>{title}</p>
+        <img src={ thumbnail } alt={ title } />
+        <p>{price}</p>
+        {
+          shipping.free_shipping
+            && <strong data-testid="free-shipping">Frete Grátis</strong>
+        }
       </div>
     );
   }
 }
 
 ProductCard.propTypes = {
-  productName: PropTypes.string.isRequired,
-  productPrice: PropTypes.number.isRequired,
-  productImage: PropTypes.string.isRequired,
+  product: PropTypes.objectOf().isRequired,
 };

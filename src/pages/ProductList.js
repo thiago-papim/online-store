@@ -70,9 +70,7 @@ export default class ProductList extends React.Component {
               {products.map((product) => (
                 <li key={ product.id } data-testid="product">
                   <ProductCard
-                    productName={ product.title }
-                    productImage={ product.thumbnail }
-                    productPrice={ product.price }
+                    product={ product }
                   />
                 </li>
               ))}
