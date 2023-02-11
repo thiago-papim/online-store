@@ -66,7 +66,7 @@ export default class ProductList extends React.Component {
             Search
           </button>
           {products.length > 0 ? (
-            <ul>
+            <ul className="product-list">
               {products.map((product) => (
                 <li key={ product.id } data-testid="product">
                   <ProductCard
