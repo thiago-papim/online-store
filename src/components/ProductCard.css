@@ -1,11 +1,12 @@
 .card-container {
   border: 1px white solid;
-  height: 250px;
+  height: 300px;
   width: 200px;
 }
 
 .card-container strong {
   color: yellow;
+  font-size: 18px;
 }
 
 .product-image {

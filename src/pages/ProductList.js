@@ -1,13 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import Sidebar from '../components/Sidebar';
 import '../styles/productList.css';
+import CartButton from '../components/CartButton';
 
 export default class ProductList extends React.Component {
   state = {
     products: [],
     query: '',
+    productList: [],
+  };
+
+  componentDidMount() {
+    const list = JSON.parse(localStorage.getItem('cartItems'));
+    if (list) { this.setState({ productList: list }); }
+  }
+
+  componentDidUpdate() {
+    const { productList } = this.state;
+    localStorage.setItem('cartItems', JSON.stringify(productList));
+  }
+
+  addCart = (product) => {
+    const { productList } = this.state;
+    this.setState({ productList: [...productList, product] }, () => {
+    });
   };
 
   handleChange = (event) => {
@@ -38,9 +57,20 @@ export default class ProductList extends React.Component {
     }
   };
 
+  removeFromCart = (itemId) => {
+    console.log(itemId);
+    const { productList } = this.state;
+    const updatedItems = productList.filter((item) => {
+      console.log(item.id);
+      return item.id !== itemId;
+    });
+    console.log(updatedItems);
+    this.setState({ productList: updatedItems });
+    localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+  };
+
   render() {
-    const { props: { history } } = this.props;
-    const { query, products } = this.state;
+    const { query, products, productList } = this.state;
     return (
       <div className="main-container">
         <div className="sidebar">
@@ -50,12 +80,17 @@ export default class ProductList extends React.Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          <input
-            type="button"
-            value="Carrinho de Compras"
-            data-testid="shopping-cart-button"
-            onClick={ () => history.push('/shopping-cart') }
-          />
+          <Link
+            to={ {
+              pathname: '/shopping-cart',
+              state: {
+                productList,
+              },
+              removeFromCart: this.removeFromCart,
+            } }
+          >
+            <CartButton productList={ productList } />
+          </Link>
           <input
             type="text"
             value={ query }
@@ -71,6 +106,7 @@ export default class ProductList extends React.Component {
                 <li key={ product.id } data-testid="product">
                   <ProductCard
                     product={ product }
+                    addCart={ this.addCart }
                   />
                 </li>
               ))}
