@@ -13,12 +13,17 @@ class ShoppingCart extends React.Component {
   }
 
   render() {
-    const { location: { products, removeFromCart } } = this.props;
-    console.log(products);
+    const { location: {
+      state: {
+        productList,
+      },
+      removeFromCart,
+    } } = this.props;
+    console.log(productList);
     return (
       <div>
         <h1>Carrinho de Compras</h1>
-        { products?.map((item) => (
+        { productList?.map((item) => (
           <CartItem
             key={ item.id }
             item={ item }
