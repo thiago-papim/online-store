@@ -21,13 +21,13 @@ export default class ProductList extends React.Component {
 
   componentDidUpdate() {
     const { productList } = this.state;
+    localStorage.setItem('cartItems', JSON.stringify(productList));
     console.log(productList);
   }
 
   addCart = (product) => {
     const { productList } = this.state;
     this.setState({ productList: [...productList, product] }, () => {
-      localStorage.setItem('cartItems', JSON.stringify(productList));
     });
   };
 
@@ -59,6 +59,18 @@ export default class ProductList extends React.Component {
     }
   };
 
+  removeFromCart = (itemId) => {
+    console.log(itemId);
+    const { productList } = this.state;
+    const updatedItems = productList.filter((item) => {
+      console.log(item.id);
+      return item.id !== itemId;
+    });
+    console.log(updatedItems);
+    this.setState({ productList: updatedItems });
+    localStorage.setItem('cartItems', JSON.stringify(updatedItems));
+  };
+
   render() {
     const { query, products, productList } = this.state;
     return (
@@ -73,7 +85,10 @@ export default class ProductList extends React.Component {
           <Link
             to={ {
               pathname: '/shopping-cart',
-              state: productList,
+              state: {
+                productList,
+              },
+              removeFromCart: this.removeFromCart,
             } }
           >
             <CartButton productList={ productList } />
