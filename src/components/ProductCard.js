@@ -23,7 +23,11 @@ export default class ProductCard extends React.Component {
           shipping.free_shipping
             && <strong data-testid="free-shipping">Frete Grátis</strong>
         }
-        <BtnAddCart product={ product } addCart={ addCart } />
+        <BtnAddCart
+          datatestid="product-add-to-cart"
+          product={ product }
+          addCart={ addCart }
+        />
       </div>
     );
   }

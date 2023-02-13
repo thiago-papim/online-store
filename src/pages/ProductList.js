@@ -50,17 +50,6 @@ export default class ProductList extends React.Component {
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
-          {/* <Link
-            to={ {
-              pathname: '/shopping-cart',
-              state: {
-                productList,
-              },
-              removeFromCart: this.removeFromCart,
-            } }
-          >
-            <CartButton productList={ productList } />
-          </Link> */}
           <input
             type="text"
             value={ query }

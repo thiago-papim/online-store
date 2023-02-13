@@ -12,7 +12,13 @@ class Routes extends React.Component {
     console.log(this.props);
     return (
       <Switch>
-        <Route path="/product/:id" component={ ProductDetails } />
+        <Route
+          path="/product/:id"
+          render={ (props) => (<ProductDetails
+            addCart={ addCart }
+            props={ props }
+          />) }
+        />
         <Route
           path="/shopping-cart"
           render={ () => (<ShoppingCart
