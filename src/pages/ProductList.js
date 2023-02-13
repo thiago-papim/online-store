@@ -8,25 +8,6 @@ export default class ProductList extends React.Component {
   state = {
     products: [],
     query: '',
-    productList: [],
-  };
-
-  componentDidMount() {
-    const list = JSON.parse(localStorage.getItem('cartItems'));
-    console.log(list);
-    if (list) { this.setState({ productList: list }); }
-  }
-
-  componentDidUpdate() {
-    const { productList } = this.state;
-    console.log(productList);
-  }
-
-  addCart = (product) => {
-    const { productList } = this.state;
-    this.setState({ productList: [...productList, product] }, () => {
-      localStorage.setItem('cartItems', JSON.stringify(productList));
-    });
   };
 
   handleChange = (event) => {
@@ -58,8 +39,8 @@ export default class ProductList extends React.Component {
   };
 
   render() {
-    const { props: { history } } = this.props;
     const { query, products } = this.state;
+    const { addCart } = this.props;
     return (
       <div className="main-container">
         <div className="sidebar">
@@ -70,12 +51,6 @@ export default class ProductList extends React.Component {
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
           <input
-            type="button"
-            value="Carrinho de Compras"
-            data-testid="shopping-cart-button"
-            onClick={ () => history.push('/shopping-cart') }
-          />
-          <input
             type="text"
             value={ query }
             onChange={ this.handleChange }
@@ -85,15 +60,12 @@ export default class ProductList extends React.Component {
             Search
           </button>
           {products.length > 0 ? (
-            <ul>
+            <ul className="product-list">
               {products.map((product) => (
                 <li key={ product.id } data-testid="product">
                   <ProductCard
-                    productName={ product.title }
-                    productImage={ product.thumbnail }
-                    productPrice={ product.price }
                     product={ product }
-                    addCart={ this.addCart }
+                    addCart={ addCart }
                   />
                 </li>
               ))}
@@ -113,4 +85,5 @@ ProductList.propTypes = {
       push: PropTypes.func.isRequired,
     }).isRequired,
   }).isRequired,
+  addCart: PropTypes.func.isRequired,
 };

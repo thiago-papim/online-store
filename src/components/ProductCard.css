@@ -1,0 +1,16 @@
+.card-container {
+  border: 1px white solid;
+}
+
+.card-container strong {
+  color: yellow;
+  font-size: 18px;
+}
+
+.product-image {
+  max-width: 70px;
+}
+
+.product-name {
+  font-size: 12px;
+}
