@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { getProductById } from '../services/api';
 /* import CartButton from '../components/CartButton';
 import ShoppingCart from './ShoppingCart'; */
+import Review from '../components/Review';
 
 class ProductDetails extends React.Component {
   state = { product: {} };
@@ -28,6 +29,7 @@ class ProductDetails extends React.Component {
         <Link to="/hshopping-cart" data-testid="shopping-cart-button">
           Carrinho
         </Link>
+        <Review />
 
       </div>
     );
