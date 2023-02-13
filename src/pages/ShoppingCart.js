@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import CartItem from '../components/CartItem';
 
 class ShoppingCart extends React.Component {
-  componentDidMount() {
-    const storedItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  }
+  // componentDidMount() {
+  //   const storedItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+  // }
 
   componentDidUpdate() {
     const { location: { products } } = this.state;
@@ -13,23 +13,18 @@ class ShoppingCart extends React.Component {
   }
 
   render() {
-    const { location: {
-      state: {
-        productList,
-      },
-      removeFromCart,
-    } } = this.props;
-    console.log(productList);
+    const { cartProducts, removeFromCart } = this.props;
+    console.log(cartProducts);
     return (
       <div>
         <h1>Carrinho de Compras</h1>
-        { productList?.map((item) => (
+        { cartProducts.length > 0 ? cartProducts.map((item) => (
           <CartItem
             key={ item.id }
             item={ item }
             removeFromCart={ removeFromCart }
           />
-        ))}
+        )) : (<h4 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h4>)}
       </div>
     );
   }
@@ -41,6 +36,8 @@ ShoppingCart.propTypes = {
       products: PropTypes.arrayOf().isRequired,
     }).isRequired,
   }).isRequired,
+  cartProducts: PropTypes.func.isRequired,
+  removeFromCart: PropTypes.func.isRequired,
 };
 
 export default ShoppingCart;

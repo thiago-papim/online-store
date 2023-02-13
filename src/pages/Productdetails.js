@@ -26,11 +26,10 @@ class ProductDetails extends React.Component {
           alt={ title }
         /> }
         <h2 data-testid="product-detail-price">{`R$ ${price}`}</h2>
-        <Link to="/hshopping-cart" data-testid="shopping-cart-button">
+        <Link to="/shopping-cart" data-testid="shopping-cart-button">
           Carrinho
         </Link>
         <Review />
-
       </div>
     );
   }

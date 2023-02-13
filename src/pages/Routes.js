@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Switch, Route } from 'react-router-dom';
 import ProductList from './ProductList';
 import ShoppingCart from './ShoppingCart';
@@ -7,15 +8,33 @@ import NotFound from './NotFound';
 
 class Routes extends React.Component {
   render() {
+    const { removeFromCart, addCart, cartProducts } = this.props;
+    console.log(this.props);
     return (
       <Switch>
         <Route path="/product/:id" component={ ProductDetails } />
-        <Route path="/shopping-cart" component={ ShoppingCart } />
-        <Route exact path="/" render={ (props) => <ProductList props={ props } /> } />
+        <Route
+          path="/shopping-cart"
+          render={ () => (<ShoppingCart
+            cartProducts={ cartProducts }
+            removeFromCart={ removeFromCart }
+          />) }
+        />
+        <Route
+          exact
+          path="/"
+          render={ (props) => <ProductList props={ props } addCart={ addCart } /> }
+        />
         <Route path="*" component={ NotFound } />
       </Switch>
     );
   }
 }
+
+Routes.propTypes = {
+  removeFromCart: PropTypes.func.isRequired,
+  addCart: PropTypes.func.isRequired,
+  cartProducts: PropTypes.arrayOf.isRequired,
+};
 
 export default Routes;
