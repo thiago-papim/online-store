@@ -23,20 +23,27 @@ class CartItem extends React.Component {
           {quantity}
         </p>
         <button
-          data-testid="product-decrease-quantity"
-          onClick={ () => this.handleQuantityChange(parseFloat(quantity) - 1) }
-        >
-          -
-        </button>
-        <button
           data-testid="product-increase-quantity"
-          onClick={ () => this.handleQuantityChange(parseFloat(quantity) + 1) }
+          onClick={ () => {
+            this.handleQuantityChange(parseFloat(quantity) + 1);
+          } }
         >
           +
         </button>
         <button
+          data-testid="product-decrease-quantity"
+          onClick={ () => {
+            console.log(typeof quantity);
+            if (parseFloat(quantity) > 0) {
+              this.handleQuantityChange(parseFloat(quantity) - 1);
+            }
+          } }
+        >
+          -
+        </button>
+        <button
           data-testid="remove-product"
-          onClick={ () => removeFromCart(item.id) }
+          onClick={ () => removeFromCart(item) }
         >
           Remover do carrinho
 
