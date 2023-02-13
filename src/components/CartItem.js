@@ -18,7 +18,7 @@ class CartItem extends React.Component {
     const { quantity } = this.state;
     return (
       <div data-testid="product-add-to-cart">
-        <h4 data-testid="shopping-cart-product-name">{item.title}</h4>
+        <h4 data-testid="shopping-cart-product-name">{ item.title }</h4>
         <p data-testid="shopping-cart-product-quantity">
           {quantity}
         </p>
