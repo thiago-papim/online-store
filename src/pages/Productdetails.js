@@ -2,8 +2,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { getProductById } from '../services/api';
-import CartButton from '../components/CartButton';
-import ShoppingCart from './ShoppingCart';
+/* import CartButton from '../components/CartButton';
+import ShoppingCart from './ShoppingCart'; */
 
 class ProductDetails extends React.Component {
   state = { product: {} };
@@ -25,7 +25,7 @@ class ProductDetails extends React.Component {
           alt={ title }
         /> }
         <h2 data-testid="product-detail-price">{`R$ ${price}`}</h2>
-        <Link to="/shopping-cart" data-testid="shopping-cart-button">
+        <Link to="/hshopping-cart" data-testid="shopping-cart-button">
           Carrinho
         </Link>
 
