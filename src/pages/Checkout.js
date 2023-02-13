@@ -1,4 +1,4 @@
-import { func, instanceOf, shape } from 'prop-types';
+import PropTypes from 'prop-types';
 import React from 'react';
 
 export default class Checkout extends React.Component {
@@ -21,13 +21,22 @@ export default class Checkout extends React.Component {
 
   handleSUbmit = (event) => {
     const { isValid, ...inputs } = this.state;
-    const { history, clear } = this.props;
+    const { history } = this.props;
     event.preventDefault();
     const validation = Object.values(inputs).every((value) => value.length > 0);
     this.setState({ isValid: validation });
     if (validation) {
       localStorage.clear();
-      clear();
+      this.setState({
+        fullname: '',
+        email: '',
+        cpf: '',
+        phone: '',
+        cep: '',
+        address: '',
+        payment: '',
+        isValid: false,
+      });
       history.push('/');
     }
   };
@@ -182,7 +191,6 @@ export default class Checkout extends React.Component {
 }
 
 Checkout.propTypes = {
-  history: shape({ push: func }).isRequired,
-  clear: func.isRequired,
-  cartProducts: instanceOf(Array).isRequired,
+  history: PropTypes.shape({ push: PropTypes.func }).isRequired,
+  cartProducts: PropTypes.instanceOf(Array).isRequired,
 };
