@@ -26,12 +26,10 @@ class App extends React.Component {
   };
 
   removeFromCart = (itemId) => {
-    console.log(itemId);
     const { cartProducts } = this.state;
-    const updatedItems = cartProducts.filter((item) => {
-      console.log(item.id);
-      return item.id !== itemId;
-    });
+    console.log(typeof cartProducts[0]);
+    console.log(typeof itemId);
+    const updatedItems = cartProducts.filter((item) => item !== itemId);
     console.log(updatedItems);
     this.setState({ cartProducts: updatedItems });
     localStorage.setItem('cartItems', JSON.stringify(updatedItems));

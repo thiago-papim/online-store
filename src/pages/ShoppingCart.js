@@ -4,18 +4,13 @@ import { Link } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 
 class ShoppingCart extends React.Component {
-  // componentDidMount() {
-  //   const storedItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  // }
-
   componentDidUpdate() {
-    const { location: { products } } = this.state;
-    localStorage.setItem('cartItems', JSON.stringify(products));
+    const { cartProducts } = this.props;
+    localStorage.setItem('cartItems', JSON.stringify(cartProducts));
   }
 
   render() {
     const { cartProducts, removeFromCart } = this.props;
-    console.log(cartProducts);
     return (
       <div>
         <Link to="/checkout" data-testid="checkout-products">Finalizar Compra</Link>
@@ -25,6 +20,7 @@ class ShoppingCart extends React.Component {
             key={ item.id }
             item={ item }
             removeFromCart={ removeFromCart }
+            quantityItem={ this.quantityItem }
           />
         )) : (<h4 data-testid="shopping-cart-empty-message">Seu carrinho está vazio</h4>)}
       </div>
