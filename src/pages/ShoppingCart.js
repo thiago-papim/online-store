@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 
 class ShoppingCart extends React.Component {
@@ -12,6 +13,7 @@ class ShoppingCart extends React.Component {
     const { cartProducts, removeFromCart } = this.props;
     return (
       <div>
+        <Link to="/checkout" data-testid="checkout-products">Finalizar Compra</Link>
         <h1>Carrinho de Compras</h1>
         { cartProducts.length > 0 ? cartProducts.map((item) => (
           <CartItem
