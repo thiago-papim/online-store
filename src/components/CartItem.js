@@ -22,13 +22,13 @@ class CartItem extends React.Component {
           data-testid="product-decrease-quantity"
           onClick={ () => handleQuantityChange('minus', product) }
         >
-          -
+          +
         </button>
         <button
           data-testid="product-increase-quantity"
           onClick={ () => handleQuantityChange('plus', product) }
         >
-          +
+          -
         </button>
         <button
           data-testid="remove-product"
