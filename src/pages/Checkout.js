@@ -19,7 +19,7 @@ export default class Checkout extends React.Component {
     });
   };
 
-  handleSUbmit = (event) => {
+  handleSubmit = (event) => {
     const { isValid, ...inputs } = this.state;
     const { history } = this.props;
     event.preventDefault();
@@ -43,24 +43,18 @@ export default class Checkout extends React.Component {
 
   render() {
     const { fullname, email, cpf, phone, cep, address, isValid, payment } = this.state;
-
     const { cartProducts } = this.props;
-    let cartObjects = null;
-    if (cartProducts) {
-      const productsID = cartProducts.map(({ id }) => id);
-      const productsUniqueIDs = new Set(productsID);
-      cartObjects = Array.from(productsUniqueIDs)
-        .map((id) => cartProducts.filter(({ id: compareID }) => id === compareID))
-        .map((array) => {
-          array[0].count = array.length;
-          return array[0];
-        });
-    }
     return (
       <main>
         <section>
-          {cartObjects?.map((object) => (
-            <div key={ object.id }>{object.title}</div>
+          {cartProducts?.map((item) => (
+            <p key={ item.product.id }>
+              <strong>{item.product.title}</strong>
+              {' '}
+              Quantidade:
+              {' '}
+              {item.quantity}
+            </p>
           ))}
         </section>
         <form>
@@ -179,7 +173,7 @@ export default class Checkout extends React.Component {
           <button
             type="submit"
             data-testid="checkout-btn"
-            onClick={ this.handleSUbmit }
+            onClick={ this.handleSubmit }
           >
             Pagar
           </button>

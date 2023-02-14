@@ -9,8 +9,7 @@ import Checkout from './Checkout';
 
 class Routes extends React.Component {
   render() {
-    const { removeFromCart, addCart, cartProducts } = this.props;
-    console.log(this.props);
+    const { removeFromCart, addCart, cartProducts, handleQuantityChange } = this.props;
     return (
       <Switch>
         <Route
@@ -32,6 +31,7 @@ class Routes extends React.Component {
         <Route
           path="/shopping-cart"
           render={ () => (<ShoppingCart
+            handleQuantityChange={ handleQuantityChange }
             cartProducts={ cartProducts }
             removeFromCart={ removeFromCart }
           />) }
@@ -51,6 +51,7 @@ Routes.propTypes = {
   removeFromCart: PropTypes.func.isRequired,
   addCart: PropTypes.func.isRequired,
   cartProducts: PropTypes.arrayOf.isRequired,
+  handleQuantityChange: PropTypes.func.isRequired,
 };
 
 export default Routes;

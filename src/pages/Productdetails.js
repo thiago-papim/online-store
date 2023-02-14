@@ -19,7 +19,6 @@ class ProductDetails extends React.Component {
   render() {
     const { product, product: { title, pictures, price } } = this.state;
     const { addCart } = this.props;
-    console.log(this.props);
     return (
       <div>
         <h3 data-testid="product-detail-name">{title}</h3>
