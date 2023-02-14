@@ -12,7 +12,7 @@ class ShoppingCart extends React.Component {
   //   const { location: { products } } = this.state;
   //   localStorage.setItem('cartItems', JSON.stringify(products));
   // }
-  
+
   render() {
     const { cartProducts, removeFromCart, handleQuantityChange } = this.props;
     return (

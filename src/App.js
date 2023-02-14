@@ -47,7 +47,6 @@ class App extends React.Component {
 
   removeFromCart = (itemId) => {
     const { cartProducts } = this.state;
-
     const updatedItems = cartProducts.filter((item) => item.product.id !== itemId);
     this.setState({ cartProducts: updatedItems });
     localStorage.setItem('cartItems', JSON.stringify(updatedItems));
