@@ -5,7 +5,6 @@ class CartItem extends React.Component {
   render() {
     const { item, removeFromCart, handleQuantityChange } = this.props;
     const { product, quantity } = item;
-    console.log(item);
     return (
       <div
         data-testid="product-add-to-cart"

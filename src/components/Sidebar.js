@@ -14,9 +14,11 @@ class Sidebar extends React.Component {
 
   handleCategories = async () => {
     const response = await getCategories();
+    console.log('oi');
     this.setState({
       categories: response,
     });
+    console.log('oi');
   };
 
   render() {
