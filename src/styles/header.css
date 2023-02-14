@@ -1,0 +1,52 @@
+header {
+  align-items: center;
+  background-color: rgb(59, 61, 92);
+  border-bottom: 5px white solid;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  width: 100vw;
+}
+
+header img {
+  padding-top: 10px;
+  width: 15vw;
+}
+
+.logo {
+  min-width: 150px;
+}
+
+.div-header {
+  min-width: 300px;
+  text-align: center;
+}
+
+header p {
+  color: white;
+  margin-left: 10px;
+}
+
+.carrinho-png {
+  width: 40px;
+}
+
+.teste {
+  text-decoration: none;
+  width: 100px;
+}
+
+.teste:before {
+  align-items: center;
+  background-color: red;
+  border-radius: 50%;
+  color: white;
+  content: attr(data-count);
+  display: flex;
+  font-size: 13px;
+  height: 20px;
+  justify-content: center;
+  position: absolute;
+  translate: 140px;
+  width: 20px;
+}

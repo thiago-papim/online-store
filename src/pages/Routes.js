@@ -30,7 +30,8 @@ class Routes extends React.Component {
         />
         <Route
           path="/shopping-cart"
-          render={ () => (<ShoppingCart
+          render={ (props) => (<ShoppingCart
+            props={ props }
             handleQuantityChange={ handleQuantityChange }
             cartProducts={ cartProducts }
             removeFromCart={ removeFromCart }
@@ -39,7 +40,11 @@ class Routes extends React.Component {
         <Route
           exact
           path="/"
-          render={ (props) => <ProductList props={ props } addCart={ addCart } /> }
+          render={ (props) => (<ProductList
+            props={ props }
+            addCart={ addCart }
+            cartProducts={ cartProducts }
+          />) }
         />
         <Route path="*" component={ NotFound } />
       </Switch>

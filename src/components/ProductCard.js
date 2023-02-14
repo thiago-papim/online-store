@@ -10,24 +10,34 @@ export default class ProductCard extends React.Component {
     const { title, thumbnail, price, shipping } = product;
     return (
       <div className="card-container">
-        <Link to={ `/product/${product.id}` } data-testid="product-detail-link">
+        <Link
+          to={ `/product/${product.id}` }
+          data-testid="product-detail-link"
+          className="link-details"
+        >
+          <div className="back-image">
+            <img className="product-image" src={ thumbnail } alt={ title } />
+            <p className="price">{`R$ ${price.toFixed(2)}`}</p>
+          </div>
           <div>
-            <p data-testid="shopping-cart-product-name">{product.title}</p>
+            <p
+              className="title"
+              data-testid="shopping-cart-product-name"
+            >
+              {product.title}
+
+            </p>
           </div>
         </Link>
-        <div>
-          <img className="product-image" src={ thumbnail } alt={ title } />
-          <p>{`R$ ${price.toFixed(2)}`}</p>
-        </div>
-        {
-          shipping.free_shipping
-            && <strong data-testid="free-shipping">Frete Grátis</strong>
-        }
         <BtnAddCart
           datatestid="product-add-to-cart"
           product={ product }
           addCart={ addCart }
         />
+        {
+          shipping.free_shipping
+              && <strong data-testid="free-shipping">Frete Grátis</strong>
+        }
       </div>
     );
   }

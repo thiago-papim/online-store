@@ -1,14 +1,38 @@
 .card-container {
-  border: 1px white solid;
+  align-items: center;
+  background-color: rgb(59, 61, 92);
+  border: 6px rgb(59, 61, 92) solid;
+  display: flex;
+  flex-direction: column;
+  height: 400px;
+}
+
+.title {
+  color: white;
+  text-align: center;
+}
+
+.link-details {
+  text-align: center;
+  text-decoration: none;
+}
+
+.price {
+  color: black;
+  text-align: center;
 }
 
 .card-container strong {
-  color: yellow;
+  color: rgb(243, 131, 4);
   font-size: 18px;
 }
 
 .product-image {
-  max-width: 70px;
+  width: 150px;
+}
+
+.back-image {
+  background-color: white;
 }
 
 .product-name {

@@ -2,41 +2,54 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 class CartItem extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     quantity: '1',
-  //   };
-  // }
-
   render() {
     const { item, removeFromCart, handleQuantityChange } = this.props;
     const { product, quantity } = item;
+    console.log(item);
     return (
-      <div data-testid="product-add-to-cart">
-        <h4 data-testid="shopping-cart-product-name">{product.title}</h4>
-        <p data-testid="shopping-cart-product-quantity">
-          {quantity}
-        </p>
-        <button
-          data-testid="product-decrease-quantity"
-          onClick={ () => handleQuantityChange('minus', product) }
-        >
-          +
-        </button>
-        <button
-          data-testid="product-increase-quantity"
-          onClick={ () => handleQuantityChange('plus', product) }
-        >
-          -
-        </button>
-        <button
-          data-testid="remove-product"
-          onClick={ () => removeFromCart(item.product.id) }
-        >
-          Remover do carrinho
+      <div
+        data-testid="product-add-to-cart"
+        className="div-cart"
+      >
+        <div className="cart-product">
+          <img
+            className="img-cart"
+            src={ product.thumbnail }
+            alt={ product.name }
+          />
+          <h4 data-testid="shopping-cart-product-name">{product.title}</h4>
+        </div>
+        <div>
+          <p data-testid="shopping-cart-product-quantity">
+            {`Quantidade: ${quantity}`}
+          </p>
+          <div className="div-buttons">
+            <div>
+              <button
+                className="remove-to-cart"
+                data-testid="product-decrease-quantity"
+                onClick={ () => handleQuantityChange('minus', product) }
+              >
+                -
+              </button>
+              <button
+                className="add-to-cart"
+                data-testid="product-increase-quantity"
+                onClick={ () => handleQuantityChange('plus', product) }
+              >
+                +
+              </button>
+            </div>
+            <button
+              className="remove"
+              data-testid="remove-product"
+              onClick={ () => removeFromCart(item.product.id) }
+            >
+              Remover do carrinho
 
-        </button>
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

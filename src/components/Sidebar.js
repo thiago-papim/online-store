@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { getCategories } from '../services/api';
+import '../styles/sidebar.css';
 
 class Sidebar extends React.Component {
   state = {
@@ -22,7 +23,7 @@ class Sidebar extends React.Component {
     const { categories } = this.state;
     const { handle } = this.props;
     return (
-      <ul>
+      <ul className="categorias">
         <h3>Categorias</h3>
         {categories.map((categorie) => (
           <label
@@ -30,13 +31,15 @@ class Sidebar extends React.Component {
             htmlFor={ categorie.id }
             key={ categorie.id }
           >
-            <input
-              type="radio"
-              id={ categorie.id }
-              name="Categorias"
-              onChange={ handle }
-            />
-            <li>{categorie.name}</li>
+            <div className="input-category">
+              <input
+                type="radio"
+                id={ categorie.id }
+                name="Categorias"
+                onChange={ handle }
+              />
+              <li>{categorie.name}</li>
+            </div>
           </label>
         ))}
       </ul>

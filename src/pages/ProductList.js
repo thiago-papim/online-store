@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ProductCard from '../components/ProductCard';
 import Sidebar from '../components/Sidebar';
+import Header from '../components/Header';
 import '../styles/productList.css';
 
 export default class ProductList extends React.Component {
@@ -40,39 +41,35 @@ export default class ProductList extends React.Component {
 
   render() {
     const { query, products } = this.state;
-    const { addCart } = this.props;
+    const { addCart, cartProducts } = this.props;
     return (
-      <div className="main-container">
-        <div className="sidebar">
-          <Sidebar handle={ this.handleClick } />
-        </div>
-        <div>
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-          <input
-            type="text"
-            value={ query }
-            onChange={ this.handleChange }
-            data-testid="query-input"
-          />
-          <button onClick={ this.handleClick } data-testid="query-button">
-            Search
-          </button>
-          {products.length > 0 ? (
-            <ul className="product-list">
-              {products.map((product) => (
-                <li key={ product.id } data-testid="product">
-                  <ProductCard
-                    product={ product }
-                    addCart={ addCart }
-                  />
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p data-testid="empty-message">Nenhum produto foi encontrado</p>
-          )}
+      <div>
+        <Header
+          productList={ cartProducts }
+          value={ query }
+          onChange={ this.handleChange }
+          handle={ this.handleClick }
+        />
+        <div className="main-container">
+          <div className="sidebar">
+            <Sidebar handle={ this.handleClick } />
+          </div>
+          <div>
+            {products.length > 0 ? (
+              <ul className="product-list">
+                {products.map((product) => (
+                  <li className="product" key={ product.id } data-testid="product">
+                    <ProductCard
+                      product={ product }
+                      addCart={ addCart }
+                    />
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p data-testid="empty-message">Nenhum produto foi encontrado</p>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -86,4 +83,5 @@ ProductList.propTypes = {
     }).isRequired,
   }).isRequired,
   addCart: PropTypes.func.isRequired,
+  cartProducts: PropTypes.arrayOf.isRequired,
 };

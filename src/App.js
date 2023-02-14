@@ -1,8 +1,5 @@
 import React from 'react';
-import './App.css';
-import { Link } from 'react-router-dom';
 import Routes from './pages/Routes';
-import CartButton from './components/CartButton';
 
 class App extends React.Component {
   state = {
@@ -74,12 +71,8 @@ class App extends React.Component {
     const { cartProducts } = this.state;
     return (
       <div className="App">
+        {/* <Header productList={ cartProducts } /> */}
         <header className="App-header">
-          <Link
-            to="/shopping-cart"
-          >
-            <CartButton productList={ cartProducts } />
-          </Link>
           <Routes
             addCart={ this.addCart }
             removeFromCart={ this.removeFromCart }
