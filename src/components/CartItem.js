@@ -60,6 +60,8 @@ CartItem.propTypes = {
       id: PropTypes.string,
       title: PropTypes.string,
       quantity: PropTypes.number,
+      thumbnail: PropTypes.string,
+      name: PropTypes.string,
     }).isRequired,
     quantity: PropTypes.number.isRequired,
   }).isRequired,
